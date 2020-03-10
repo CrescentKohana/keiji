@@ -8,5 +8,8 @@ Sovelluksen nimi tulee japaninkielisestä sanasta 計時, joka tarkoittaa _ottaa
  * Luoda muistiinpanoja (esm. hyviä otteita kirjoista, Twitteristä jne.)
  * Katsoa paljon on käyttänyt aikaa kohdekielen parissa valitulla ajanjaksolla (yleinen tilastosivu)
 
+## Tietokantakaavio
+![tietokantakaavio](tietokantakaavio.png)
+
 ## Riippuvuudet (alustavat)
  * Python 3 (>= Python 3.5)
