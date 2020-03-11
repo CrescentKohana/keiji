@@ -4,9 +4,9 @@ Sovelluksen nimi tulee japaninkielisestä sanasta 計時, joka tarkoittaa _ottaa
 ## Mitä sillä voi tehdä?
  * Luoda oman tunnuksen (käyttäjänimi, email, salasana, kielivalinta jne)
  * Luoda kategorioita tapahtumille (esm. lukeminen, YouTube-videoiden katselu, podcastin kuuntelu)
- * Kirjata tapahtumia ajan kanssa (esm. paljon tuli luettua kirjaa äsken)
+ * Kirjata tapahtumia ajan kanssa (esm. kauanko kirjaa tuli luettua)
  * Luoda muistiinpanoja (esm. hyviä otteita kirjoista, Twitteristä jne.)
- * Katsoa paljon on käyttänyt aikaa kohdekielen parissa valitulla ajanjaksolla (yleinen tilastosivu)
+ * Katsoa ajankäytön kohdekielen parissa valitulla ajanjaksolla (yleinen tilastosivu)
 
 ## Tietokantakaavio
 ![tietokantakaavio](tietokantakaavio.png)
