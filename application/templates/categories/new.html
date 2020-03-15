@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('categories_create') }}">
+  <label>
+    <input type="text" name="name"/>
+    <input type="text" name="description"/>
+  </label>
+  <input type="submit" value="Add a new category"/>
+</form>
+{% endblock %}

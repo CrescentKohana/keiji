@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Description</th>
+    </tr>
+    {% for category in categories %}
+    <tr>
+      <td>{{ category.name }}</td>
+      <td>{{ category.description }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
+          <label>
+            <input type="text" name="name" value="{{category.name}}"/>
+            <input type="text" name="description" value="{{category.description}}"/>
+          </label>
+          <input type="submit" value="Edit"/>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Keiji</title>
-    </head>
-  <body>
-    {% block body %}
-      <p>
-        Content.
-      </p>
-    {% endblock %}
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Keiji</title>
+</head>
+
+<body>
+  <ul>
+    <li><a href="/">Home</a></li>
+	  <li><a href="{{ url_for('categories_index') }}">List categories</a></li>
+	  <li><a href="{{ url_for('categories_form') }}">Add a category</a></li>
+  </ul>
+
+  {% block body %}
+  {% endblock %}
+</body>
 </html>
