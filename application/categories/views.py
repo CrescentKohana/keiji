@@ -16,7 +16,7 @@ def categories_form():
 @app.route("/categories/<category_id>/", methods=["POST"])
 def categories_edit(category_id):
     c = Category.query.get(category_id)
-    c.title = request.form.get("name")
+    c.name = request.form.get("name")
     c.description = request.form.get("description")
     db.session().commit()
 
