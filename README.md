@@ -9,6 +9,8 @@ Sovelluksen nimi tulee japaninkielisestä sanasta 計時, joka tarkoittaa _ottaa
  * Katsoa ajankäytön kohdekielen parissa valitulla ajanjaksolla (yleinen tilastosivu)
 
 ## Tietokantakaavio
+**Categories** eli kategoriat, **Events** eli tapahtumat, **Clips** eli muistiinpanot tai tekstiklipit ja **Users** eli käyttäjät. **Primary keyt** ovat lihavoitu ja **foreign keyt** ovat merkitty _id liitteellä. 
+
 ![tietokantakaavio](documentation/database_diagram.png)
 
 ## Riippuvuudet
