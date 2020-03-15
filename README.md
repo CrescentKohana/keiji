@@ -9,8 +9,8 @@ Sovelluksen nimi tulee japaninkielisestä sanasta 計時, joka tarkoittaa _ottaa
  * Katsoa ajankäytön kohdekielen parissa valitulla ajanjaksolla (yleinen tilastosivu)
 
 ## Tietokantakaavio
-![tietokantakaavio](tietokantakaavio.png)
+![tietokantakaavio](documentation/tietokantakaavio.png)
 
 ## Riippuvuudet
  * Python 3 (>= Python 3.5)
- * requirements.txt (tulossa)
+ * requirements.txt
