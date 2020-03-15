@@ -14,7 +14,7 @@ Table Categories as Ca {
   user_id int [ref: > U.id, not null]
   date_created timestamp [not null]
   date_modified timestamp [not null]
-  title varchar [not null]
+  name varchar [not null]
   description varchar
 }
 
