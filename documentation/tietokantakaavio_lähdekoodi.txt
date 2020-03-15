@@ -1,0 +1,36 @@
+// https://dbdiagram.io/
+
+Table Users as U {
+  id int [pk]
+  nickname varchar [not null]
+  email varchar [unique, not null]
+  pw_hash varchar [not null]
+  lang varchar [not null]
+  date_created timestamp [not null]
+}
+
+Table Categories as Ca {
+  id int [pk]
+  user_id int [ref: > U.id, not null]
+  date_created timestamp [not null]
+  date_modified timestamp [not null]
+  title varchar [not null]
+  description varchar
+}
+
+Table Events as E {
+  id int [pk]
+  category_id int [ref: > Ca.id, not null]
+  date_created timestamp [not null]
+  date_modified timestamp [not null]
+  description varchar [not null]
+  duration int
+}
+
+Table Clips as Cl {
+  id int [pk]
+  category_id int [ref: > Ca.id, not null]
+  date_created timestamp [not null]
+  date_modified timestamp [not null]
+  clip varchar
+}
