@@ -1,4 +1,4 @@
-#Käyttötapaukset
+# Käyttötapaukset
 ## Mitä sillä voi tehdä?
  * Luoda oman tunnuksen (käyttäjänimi, email, salasana, kielivalinta jne)
  * Luoda kategorioita tapahtumille
