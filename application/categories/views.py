@@ -1,4 +1,6 @@
 from flask import redirect, render_template, request, url_for
+from flask_login import login_required, current_user
+
 from application import app, db
 from application.categories.models import Category
 from application.categories.forms import CategoryForm
@@ -10,11 +12,13 @@ def categories_index():
 
 
 @app.route("/categories/new/")
+@login_required
 def categories_form():
     return render_template("categories/new.html", form=CategoryForm())
 
 
 @app.route("/categories/<category_id>/", methods=["POST"])
+@login_required
 def categories_edit(category_id):
     form = CategoryForm(request.form)
     c = Category.query.get(category_id)
@@ -27,6 +31,7 @@ def categories_edit(category_id):
 
 
 @app.route("/categories/", methods=["POST"])
+@login_required
 def categories_create():
     form = CategoryForm(request.form)
 
@@ -34,6 +39,7 @@ def categories_create():
         return render_template("categories/new.html", form=form)
 
     c = Category(form.name.data, form.description.data)
+    c.account_id = current_user.id
 
     db.session().add(c)
     db.session().commit()
