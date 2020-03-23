@@ -6,20 +6,35 @@
       <th>Category</th>
       <th>Description</th>
     </tr>
+
     {% for category in categories %}
     <tr>
       <td>{{ category.name }}</td>
       <td>{{ category.description }}</td>
+      <td><button onclick="show_edit({{ category.id }})">Edit</button></td>
       <td>
-        <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
-          <label>
-            <input type="text" name="name" value="{{category.name}}"/>
-            <input type="text" name="description" value="{{category.description}}"/>
-          </label>
-          <input type="submit" value="Edit"/>
-        </form>
+        <div style="display: none" id="edit-{{ category.id }}">
+          <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
+            <label>
+              <input type="text" name="name" value="{{category.name}}"/>
+              <input type="text" name="description" value="{{category.description}}"/>
+            </label>
+            <input type="submit" value="Save"/>
+          </form>
+        </div>
       </td>
     </tr>
     {% endfor %}
+
   </table>
+      <script>
+        function show_edit(id) {
+            const e = document.getElementById(`edit-${id}`);
+            if (e.style.display === "none") {
+                e.style.display = "block";
+            } else {
+                e.style.display = "none";
+            }
+        }
+    </script>
 {% endblock %}
