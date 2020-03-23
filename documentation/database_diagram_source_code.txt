@@ -2,8 +2,8 @@
 
 Table Users as U {
   id int [pk]
+  username varchar [unique, not null]
   nickname varchar [not null]
-  email varchar [unique, not null]
   pw_hash varchar [not null]
   lang varchar [not null]
   date_created timestamp [not null]
