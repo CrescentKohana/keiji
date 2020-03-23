@@ -4,22 +4,33 @@ from application import db
 class User(db.Model):
     __tablename__ = "account"
 
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
+    id = db.Column(
+        db.Integer,
+        primary_key=True
+    )
 
-    nickname = db.Column(db.String(64), nullable=False)
-    username = db.Column(db.String(64), nullable=False)
-    password = db.Column(db.String(1024), nullable=False)
-    lang = db.Column(db.String(2), nullable=False)
+    date_created = db.Column(
+        db.DateTime,
+        default=db.func.current_timestamp()
+    )
+    date_modified = db.Column(
+        db.DateTime,
+        default=db.func.current_timestamp(),
+        onupdate=db.func.current_timestamp()
+    )
+
+    nickname = db.Column(db.String(64),   nullable=False)
+    username = db.Column(db.String(64),   nullable=False)
+    password = db.Column(db.String(128), nullable=False)
+    language = db.Column(db.String(2),    nullable=False)
 
     categories = db.relationship("Category", backref='account', lazy=True)
 
-    def __init__(self, nickname, username, password):
+    def __init__(self, nickname, username, password, language):
         self.nickname = nickname
         self.username = username
         self.password = password
+        self.language = language
 
     def get_id(self):
         return self.id
