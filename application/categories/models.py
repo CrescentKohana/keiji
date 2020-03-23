@@ -2,12 +2,9 @@ from application import db
 
 
 class Category(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    # The user who created this category. TODO: Enable after user functionality is added.
-    # user_id = db.Column(
-    #     db.Integer,
-    #     nullable=False
-    # )
+    id = db.Column(
+        db.Integer, primary_key=True
+    )
 
     date_created = db.Column(
         db.DateTime,
@@ -22,6 +19,14 @@ class Category(db.Model):
     description = db.Column(
         db.String(1024),
         nullable=True
+    )
+
+    onupdate = db.func.current_timestamp()
+
+    account_id = db.Column(
+        db.Integer,
+        db.ForeignKey('account.id'),
+        nullable=False
     )
 
     def __init__(self, name, description):
