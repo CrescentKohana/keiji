@@ -7,8 +7,12 @@ from application.categories.forms import CategoryForm
 
 
 @app.route("/categories", methods=["GET"])
+@login_required
 def categories_index():
-    return render_template("categories/list.html", categories=Category.query.all())
+    return render_template(
+        "categories/list.html",
+        categories=Category.query.filter(Category.account_id == current_user.id)
+    )
 
 
 @app.route("/categories/new/")
@@ -17,15 +21,28 @@ def categories_form():
     return render_template("categories/new.html", form=CategoryForm())
 
 
-@app.route("/categories/<category_id>/", methods=["POST"])
+@app.route("/categories/<category_id>/edit", methods=["POST"])
 @login_required
 def categories_edit(category_id):
-    form = CategoryForm(request.form)
-    c = Category.query.get(category_id)
+    if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
+        form = CategoryForm(request.form)
+        c = Category.query.get(category_id)
 
-    c.name = form.name.data
-    c.description = form.description.data
-    db.session().commit()
+        c.name = form.name.data
+        c.description = form.description.data
+        db.session().commit()
+
+    return redirect(url_for("categories_index"))
+
+
+@app.route("/categories/<category_id>/delete", methods=["POST"])
+@login_required
+def categories_delete(category_id):
+    if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
+        c = Category.query.get(category_id)
+
+        db.session.delete(c)
+        db.session().commit()
 
     return redirect(url_for("categories_index"))
 
