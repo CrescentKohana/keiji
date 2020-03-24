@@ -11,7 +11,7 @@
     <tr>
       <td>{{ category.name }}</td>
       <td>{{ category.description }}</td>
-      <td><button onclick="show_edit({{ category.id }})">Edit</button></td>
+      <td><button onclick="show_edit({{ category.id }})">Edit / Delete</button></td>
       <td>
         <div style="display: none" id="edit-{{ category.id }}">
           <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
@@ -20,6 +20,9 @@
               <input type="text" name="description" value="{{category.description}}"/>
             </label>
             <input type="submit" value="Save"/>
+          </form>
+          <form method="POST" action="{{ url_for('categories_delete', category_id=category.id) }}">
+            <input type="submit" value="Delete"/>
           </form>
         </div>
       </td>
@@ -36,5 +39,5 @@
                 e.style.display = "none";
             }
         }
-    </script>
+      </script>
 {% endblock %}
