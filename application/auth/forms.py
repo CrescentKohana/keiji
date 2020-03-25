@@ -11,12 +11,12 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    nickname = StringField("Nickname", [validators.Length(min=3), validators.data_required()])
-    username = StringField("Username", [validators.Length(min=3), validators.data_required()])
-    password = PasswordField("Password", [validators.Length(min=8), validators.data_required()])
+    nickname = StringField("Nickname", [validators.Length(min=3, max=64), validators.data_required()])
+    username = StringField("Username", [validators.Length(min=3, max=64), validators.data_required()])
+    password = PasswordField("Password", [validators.Length(min=8, max=256), validators.data_required()])
     language = SelectField(
         "Language",
-        [validators.Length(min=2), validators.data_required()],
+        [validators.data_required()],
         choices=[('en', 'English'), ('fi', 'Finnish'), ('jp', 'Japanese')]
     )
 

@@ -30,6 +30,16 @@ def events_form():
 def events_edit(event_id):
     if Event.query.filter_by(id=event_id).first().account_id == current_user.id:
         form = EventForm(request.form)
+
+        if not form.validate():
+            form.description.data, form.duration.data = "", 0
+            return render_template(
+                "events/list.html",
+                events=Event.query.filter(Event.account_id == current_user.id),
+                category=Category.query.filter(Category.id == Event.category_id).first(),
+                form=form
+            )
+
         c = Event.query.get(event_id)
 
         c.category_id = form.category_id.data.id

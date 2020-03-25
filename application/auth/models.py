@@ -19,10 +19,10 @@ class User(db.Model):
         onupdate=db.func.current_timestamp()
     )
 
-    nickname = db.Column(db.String(64),   nullable=False)
-    username = db.Column(db.String(64),   nullable=False)
-    password = db.Column(db.String(128), nullable=False)
-    language = db.Column(db.String(2),    nullable=False)
+    nickname = db.Column(db.String(64),  nullable=False)
+    username = db.Column(db.String(64),  nullable=False)
+    password = db.Column(db.String(256), nullable=False)
+    language = db.Column(db.String(2),   nullable=False)
 
     categories = db.relationship("Category", backref='account', lazy=True)
 

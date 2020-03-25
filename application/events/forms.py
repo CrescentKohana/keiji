@@ -14,13 +14,13 @@ class EventForm(FlaskForm):
 
     description = TextAreaField(
         "Description",
-        [validators.Length(min=2), validators.data_required()]
+        [validators.Length(min=2, max=2048), validators.data_required()]
     )
 
     duration = IntegerField(
-        "Duration",
+        "Duration (min)",
         [
-            validators.number_range(min=1, max=86400, message="Minimum for the duration is 1s and maximum is 24h."),
+            validators.number_range(min=1, max=1440, message="Duration must be between %(min)d-%(max)d minutes."),
             validators.data_required()
         ]
     )

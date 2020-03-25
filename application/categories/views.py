@@ -29,7 +29,12 @@ def categories_edit(category_id):
         form = CategoryForm(request.form)
 
         if not form.validate():
-            return render_template("categories/list.html", form=form)
+            form.description.data, form.description.data = "", ""
+            return render_template(
+                "categories/list.html",
+                categories=Category.query.filter(Category.account_id == current_user.id),
+                form=form
+            )
 
         c = Category.query.get(category_id)
 
@@ -58,7 +63,7 @@ def categories_create():
     form = CategoryForm(request.form)
 
     if not form.validate():
-        return render_template("categories/new.html", form=CategoryForm())
+        return render_template("categories/new.html", form=form)
 
     c = Category(form.name.data, form.description.data)
     c.account_id = current_user.id

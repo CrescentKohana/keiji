@@ -3,9 +3,9 @@
 {% block body %}
   <table>
     <tr>
-      <th>Category</th>
-      <th>Duration</th>
-      <th>Description</th>
+      <th>{{ form.category_id.label }}</th>
+      <th>{{ form.duration.label }}</th>
+      <th>{{ form.description.label }}</th>
     </tr>
 
     {% for event in events %}
@@ -13,7 +13,9 @@
       <td>{{ category.query.filter_by(id=event.category_id).first().name }}</td>
       <td>{{ event.duration }}</td>
       <td>{{ event.description }}</td>
+
       <td><button onclick="show_edit({{ event.id }})">Edit / Delete</button></td>
+
       <td>
         <div style="display: none" id="edit-{{ event.id }}">
 
