@@ -21,8 +21,6 @@ class Category(db.Model):
         nullable=True
     )
 
-    onupdate = db.func.current_timestamp()
-
     account_id = db.Column(
         db.Integer,
         db.ForeignKey('account.id'),
