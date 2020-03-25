@@ -21,6 +21,9 @@ from application import views
 from application.categories import models
 from application.categories import views
 
+from application.events import models
+from application.events import views
+
 from application.auth import models
 from application.auth import views
 

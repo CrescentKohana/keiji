@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Category</th>
+      <th>Duration</th>
+      <th>Description</th>
+    </tr>
+
+    {% for event in events %}
+    <tr>
+      <td>{{ category.query.filter_by(id=event.category_id).first().name }}</td>
+      <td>{{ event.duration }}</td>
+      <td>{{ event.description }}</td>
+      <td><button onclick="show_edit({{ event.id }})">Edit / Delete</button></td>
+      <td>
+        <div style="display: none" id="edit-{{ event.id }}">
+
+          <form method="POST" action="{{ url_for('events_edit', event_id=event.id) }}">
+              <table>
+                <tr>
+                  <td>{{ form.category_id.label }}</td>
+                  <td>{{ form.category_id }}</td>
+                  <td>
+                    <ul>
+                      {% for error in form.category_id.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ form.duration.label }}</td>
+                  <td>{{ form.duration }}</td>
+                  <td>
+                    <ul>
+                      {% for error in form.duration.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ form.description.label }}</td>
+                  <td>{{ form.description }}</td>
+                  <td>
+                    <ul>
+                      {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            <input type="submit" value="Save"/>
+          </form>
+
+          <form method="POST" action="{{ url_for('events_delete', event_id=event.id) }}">
+            <input type="submit" value="Delete"/>
+          </form>
+
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </table>
+  <script>
+      function show_edit(id) {
+          const e = document.getElementById(`edit-${id}`);
+          if (e.style.display === "none") {
+              e.style.display = "block";
+          } else {
+              e.style.display = "none";
+          }
+      }
+  </script>
+{% endblock %}
