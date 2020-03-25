@@ -11,7 +11,8 @@ from application.categories.forms import CategoryForm
 def categories_index():
     return render_template(
         "categories/list.html",
-        categories=Category.query.filter(Category.account_id == current_user.id)
+        categories=Category.query.filter(Category.account_id == current_user.id),
+        form=CategoryForm()
     )
 
 
@@ -26,6 +27,10 @@ def categories_form():
 def categories_edit(category_id):
     if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
         form = CategoryForm(request.form)
+
+        if not form.validate():
+            return render_template("categories/list.html", form=form)
+
         c = Category.query.get(category_id)
 
         c.name = form.name.data
@@ -53,7 +58,7 @@ def categories_create():
     form = CategoryForm(request.form)
 
     if not form.validate():
-        return render_template("categories/new.html", form=form)
+        return render_template("categories/new.html", form=CategoryForm())
 
     c = Category(form.name.data, form.description.data)
     c.account_id = current_user.id
