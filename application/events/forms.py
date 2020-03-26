@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import TextAreaField, IntegerField, validators
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 
@@ -9,7 +10,7 @@ class EventForm(FlaskForm):
     category_id = QuerySelectField(
         "Category",
         get_label="name",
-        query_factory=lambda: models.Category.query
+        query_factory=lambda: models.Category.query.filter_by(account_id=current_user.id)
     )
 
     description = TextAreaField(
