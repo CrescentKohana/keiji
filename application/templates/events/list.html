@@ -14,10 +14,14 @@
       <td>{{ event.duration }}</td>
       <td>{{ event.description }}</td>
 
-      <td><button id="edit-button-{{ event.id }}" onclick="show_edit({{ event.id }})">Edit / Delete</button></td>
       <td>
-        <div style="display: none" id="edit-{{ event.id }}">
+        <button id="edit-button-{{ event.id }}" class="edit" onclick="show_edit({{ event.id }})">
+          Edit / Delete
+        </button>
+      </td>
 
+      <td>
+        <div style="display: none" id="edit-{{ event.id }}" class="edit">
           <form method="POST" action="{{ url_for('events_edit', event_id=event.id) }}">
               <table>
                 <tr>
@@ -70,7 +74,14 @@
   <script>
       function show_edit(id) {
           const e = document.getElementById(`edit-${id}`);
+          const eClasses = document.getElementsByClassName(`edit`);
+
           if (e.style.display === "none") {
+              for (const eClass of eClasses) {
+                  eClass.style.display = "none";
+              }
+
+              document.getElementById(`edit-button-${id}`).style.display = 'Block';
               document.getElementById(`edit-button-${id}`).innerText = 'Cancel';
               e.style.display = "block";
           } else {
