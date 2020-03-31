@@ -8,7 +8,7 @@ from application.events.forms import EventForm
 from application.categories.models import Category
 
 
-@app.route("/events", methods=["GET"])
+@app.route("/events", methods=["GET", "POST"])
 @login_required
 def events_index():
     return render_template(
