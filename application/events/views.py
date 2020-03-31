@@ -13,7 +13,7 @@ from application.categories.models import Category
 def events_index():
     return render_template(
         "events/list.html",
-        events=Event.query.filter(Event.account_id == current_user.id),
+        events=Event.find_events_user_has_permissions_to(current_user.id),
         category=Category.query.filter(Category.id == Event.category_id).first(),
         form=EventForm()
     )
@@ -28,14 +28,18 @@ def events_form():
 @app.route("/events/<event_id>/edit", methods=["POST"])
 @login_required
 def events_edit(event_id):
-    if Event.query.filter_by(id=event_id).first().account_id == current_user.id:
+    event_ids = []
+    for row in Event.find_events_user_has_permissions_to(current_user.id):
+        event_ids.append(row[0])
+
+    if int(event_id) in event_ids:
         form = EventForm(request.form)
 
         if not form.validate():
             form.description.data, form.duration.data = "", 0
             return render_template(
                 "events/list.html",
-                events=Event.query.filter(Event.account_id == current_user.id),
+                events=Event.find_events_user_has_permissions_to(current_user.id),
                 category=Category.query.filter(Category.id == Event.category_id).first(),
                 form=form
             )
@@ -53,7 +57,11 @@ def events_edit(event_id):
 @app.route("/events/<event_id>/delete", methods=["POST"])
 @login_required
 def events_delete(event_id):
-    if Event.query.filter_by(id=event_id).first().account_id == current_user.id:
+    event_ids = []
+    for row in Event.find_events_user_has_permissions_to(current_user.id):
+        event_ids.append(row[0])
+
+    if int(event_id) in event_ids:
         c = Event.query.get(event_id)
 
         db.session.delete(c)
@@ -71,7 +79,6 @@ def events_create():
         return render_template("events/new.html", form=form)
 
     c = Event(request.form['category_id'], request.form['duration'], request.form['description'])
-    c.account_id = current_user.id
 
     db.session().add(c)
     db.session().commit()
