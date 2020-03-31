@@ -6,7 +6,7 @@ from application.categories.models import Category
 from application.categories.forms import CategoryForm
 
 
-@app.route("/categories", methods=["GET"])
+@app.route("/categories", methods=["GET", "POST"])
 @login_required
 def categories_index():
     return render_template(

@@ -15,7 +15,10 @@ class EventForm(FlaskForm):
 
     description = TextAreaField(
         "Description",
-        [validators.Length(min=2, max=2048), validators.data_required()]
+        [
+            validators.Length(min=2, max=2048),
+            validators.data_required()
+        ]
     )
 
     duration = IntegerField(

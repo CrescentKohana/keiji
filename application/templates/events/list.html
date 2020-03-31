@@ -14,8 +14,7 @@
       <td>{{ event.duration }}</td>
       <td>{{ event.description }}</td>
 
-      <td><button onclick="show_edit({{ event.id }})">Edit / Delete</button></td>
-
+      <td><button id="edit-button-{{ event.id }}" onclick="show_edit({{ event.id }})">Edit / Delete</button></td>
       <td>
         <div style="display: none" id="edit-{{ event.id }}">
 
@@ -72,9 +71,14 @@
       function show_edit(id) {
           const e = document.getElementById(`edit-${id}`);
           if (e.style.display === "none") {
+              document.getElementById(`edit-button-${id}`).innerText = 'Cancel';
               e.style.display = "block";
           } else {
+              document.getElementById(`edit-button-${id}`).innerText = 'Edit / Delete';
               e.style.display = "none";
+              document.body.innerHTML += '<form id="cancel-edit" action="{{ url_for('events_index')}}" ' +
+                  'method="post"><input type="hidden"></form>';
+              document.getElementById("cancel-edit").submit();
           }
       }
   </script>
