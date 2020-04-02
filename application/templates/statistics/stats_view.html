@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h1>Hello {{ user.nickname }}!</h1>
+    <h1>Statistics</h1>
 
-    <h2>Stats</h2>
+    <h2>Per category</h2>
     <table>
     <tr class="label">
       <th>Category</th>
@@ -17,6 +17,6 @@
     </tr>
     {% endfor %}
   </table>
-  <br>
-
+  <h2>Overall time spent</h2>
+  {{ overall_time }}
 {% endblock %}
