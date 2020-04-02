@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, url_for
+
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
@@ -46,6 +47,21 @@ login_manager.login_message = "Please login to use this functionality."
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+
+# If there are any changes in the CSS file, this reloads it.
+@app.context_processor
+def override_url_for():
+    return dict(url_for=dated_url_for)
+
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = 'css/style.css'
+        if filename:
+            file_path = os.path.join(app.root_path, endpoint, filename)
+            values['q'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
 
 
 try:
