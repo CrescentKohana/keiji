@@ -13,7 +13,7 @@ from application.categories.models import Category
 def events_index():
     return render_template(
         "events/list.html",
-        events=Event.find_events_user_has_permissions_to(current_user.id),
+        events=list(Event.find_events_user_has_permissions_to(current_user.id)),
         category=Category.query.filter(Category.id == Event.category_id).first(),
         form=EventForm()
     )
@@ -39,7 +39,7 @@ def events_edit(event_id):
             form.description.data, form.duration.data = "", 0
             return render_template(
                 "events/list.html",
-                events=Event.find_events_user_has_permissions_to(current_user.id),
+                events=list(Event.find_events_user_has_permissions_to(current_user.id)),
                 category=Category.query.filter(Category.id == Event.category_id).first(),
                 form=form
             )
