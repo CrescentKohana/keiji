@@ -21,7 +21,7 @@
 
       <td>
         <div style="display: none" id="edit-{{ category.id }}" class="edit">
-          <form style="display:inline-block; margin-right:-60px;" method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
+          <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
 
                 <div>{{ form.name.label }}</div>
                 <div>{{ form.name }}</div>
@@ -44,7 +44,7 @@
             <input class="button" type="submit" value="Save"/>
           </form>
 
-          <form style="display:inline-block; margin-left:-60px;" method="POST" action="{{ url_for('categories_delete', category_id=category.id) }}">
+          <form method="POST" action="{{ url_for('categories_delete', category_id=category.id) }}">
             <input class="button" type="submit" value="Delete"/>
           </form>
 
