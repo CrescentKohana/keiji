@@ -16,7 +16,7 @@ def categories_index():
     )
 
 
-@app.route("/categories/new/")
+@app.route("/categories/new")
 @login_required
 def categories_form():
     return render_template("categories/new.html", form=CategoryForm())

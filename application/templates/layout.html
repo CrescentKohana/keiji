@@ -1,29 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Keiji</title>
+  <link rel="stylesheet" href="../static/css/style.css"/>
 </head>
 
 <body>
+
+<div id="header">
+<span id="title">Keiji</span>
+
+  <div id="nav">
+  <ul>
+    <li><a href="/">Home</a></li>
+    </li>
+    <li><a href="{{ url_for('events_index') }}">Events</a>
+      <ul>
+        <li><a href="{{ url_for('events_index') }}">List</a></li>
+        <li><a href="{{ url_for('events_form') }}">Add</a></li>
+      </ul>
+
+    </li>
+        <li><a href="#">Clips</a>
+      <ul>
+        <li><a href="#">List</a></li>
+        <li><a href="#">Add</a></li>
+      </ul>
+    </li>
+
+        <li><a href="{{ url_for('categories_index') }}">Categories</a>
+      <ul>
+        <li><a href="{{ url_for('categories_index') }}">List</a></li>
+        <li><a href="{{ url_for('categories_form') }}">Add</a></li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+
+  <span id="auth">
   {% if current_user.is_authenticated %}
-    <p>
-      Logged in as {{ current_user.nickname }}. <a href="{{ url_for('auth_logout') }}">Log out</a>
-    </p>
+      {{ current_user.nickname }} | <a href="{{ url_for('auth_logout') }}">log out</a>
   {% else %}
     <a href="{{ url_for('auth_login') }}">Login</a>
     <a href="{{ url_for('auth_register') }}">Register</a>
   {% endif %}
+  </span>
+</div>
 
-  <ul>
-    <li><a href="/">Home</a></li>
-	  <li><a href="{{ url_for('categories_index') }}">List categories</a></li>
-	  <li><a href="{{ url_for('categories_form') }}">Add a category</a></li>
-    <li><a href="{{ url_for('events_index') }}">List events</a></li>
-	  <li><a href="{{ url_for('events_form') }}">Add a event</a></li>
-  </ul>
-
+<div id="content">
   {% block body %}
   {% endblock %}
+</div>
+
+<div id="footer">
+  計時 Keiji - 2020
+</div>
+
 </body>
 </html>
