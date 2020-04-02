@@ -13,6 +13,7 @@
   <div id="nav">
   <ul>
     <li><a href="/">Home</a></li>
+    <li><a href="{{ url_for('stats_view') }}">Stats</a></li>
     <li><a href="{{ url_for('events_index') }}">Events</a>
       <ul>
         <li><a href="{{ url_for('events_index') }}">List</a></li>
@@ -20,12 +21,12 @@
       </ul>
     </li>
     <!--
-      <li><a href="#">Clips</a>
-        <ul>
-          <li><a href="{ url_for('clips_index') }">List</a></li>
-          <li><a href="{ url_for('clips_form') }">Add</a></li>
-        </ul>
-      </li>
+    <li><a href="#">Clips</a>
+      <ul>
+        <li><a href="#">List</a></li>
+        <li><a href="#">Add</a></li>
+      </ul>
+    </li>
     -->
     <li><a href="{{ url_for('categories_index') }}">Categories</a>
       <ul>
@@ -38,9 +39,10 @@
 
   <span id="auth">
   {% if current_user.is_authenticated %}
-      {{ current_user.nickname }} | <a href="{{ url_for('auth_logout') }}">log out</a>
+    {{ current_user.nickname }} |
+    <a href="{{ url_for('auth_logout') }}">log out</a>
   {% else %}
-    <a href="{{ url_for('auth_login') }}">Login</a>
+    <a href="{{ url_for('auth_login') }}">Login</a> |
     <a href="{{ url_for('auth_register') }}">Register</a>
   {% endif %}
   </span>

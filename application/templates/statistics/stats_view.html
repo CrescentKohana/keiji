@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Hello {{ user.nickname }}!</h1>
+
+    <h2>Stats</h2>
+    <table>
+    <tr class="label">
+      <th>Category</th>
+      <th>Time spent</th>
+    </tr>
+
+    {% for i in range(categories_len) %}
+    <tr class="item">
+      <td>{{ categories[i].name }}</td>
+      <td>{{ category_time[i] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+
+{% endblock %}
