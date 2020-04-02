@@ -19,7 +19,7 @@ def events_index():
     )
 
 
-@app.route("/events/new/")
+@app.route("/events/new")
 @login_required
 def events_form():
     return render_template("events/new.html", form=EventForm())

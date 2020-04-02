@@ -1,21 +1,22 @@
 {% extends "layout.html" %}
 
 {% block body %}
+  <h1>Events</h1>
   <table>
-    <tr>
+    <tr class="label">
       <th>{{ form.category_id.label }}</th>
       <th>{{ form.duration.label }}</th>
       <th>{{ form.description.label }}</th>
     </tr>
 
     {% for event in events %}
-    <tr>
+    <tr class="item">
       <td>{{ category.query.filter_by(id=event.category_id).first().name }}</td>
       <td>{{ event.duration }}</td>
       <td>{{ event.description }}</td>
 
       <td>
-        <button id="edit-button-{{ event.id }}" class="edit" onclick="show_edit({{ event.id }})">
+        <button id="edit-button-{{ event.id }}" class="edit button" onclick="show_edit({{ event.id }})">
           Edit / Delete
         </button>
       </td>
@@ -58,11 +59,11 @@
                   </td>
                 </tr>
               </table>
-            <input type="submit" value="Save"/>
+            <input class="button" type="submit" value="Save"/>
           </form>
 
           <form method="POST" action="{{ url_for('events_delete', event_id=event.id) }}">
-            <input type="submit" value="Delete"/>
+            <input class="button" type="submit" value="Delete"/>
           </form>
 
         </div>
@@ -88,7 +89,7 @@
               document.getElementById(`edit-button-${id}`).innerText = 'Edit / Delete';
               e.style.display = "none";
               document.body.innerHTML += '<form id="cancel-edit" action="{{ url_for('events_index')}}" ' +
-                  'method="post"><input type="hidden"></form>';
+                  'method="post"><input class="button" type="hidden"></form>';
               document.getElementById("cancel-edit").submit();
           }
       }
