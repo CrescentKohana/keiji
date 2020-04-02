@@ -31,6 +31,6 @@ class Statistics:
 
         response = []
         for item in result:
-            response.append(datetime.timedelta(item[0] / 60))
+            response.append(datetime.timedelta(minutes=(item[0] / 60)))
 
         return response
