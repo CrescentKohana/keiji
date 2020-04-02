@@ -7,29 +7,27 @@
 </head>
 
 <body>
-
 <div id="header">
 <span id="title">Keiji</span>
 
   <div id="nav">
   <ul>
     <li><a href="/">Home</a></li>
-    </li>
     <li><a href="{{ url_for('events_index') }}">Events</a>
       <ul>
         <li><a href="{{ url_for('events_index') }}">List</a></li>
         <li><a href="{{ url_for('events_form') }}">Add</a></li>
       </ul>
-
     </li>
-        <li><a href="#">Clips</a>
-      <ul>
-        <li><a href="#">List</a></li>
-        <li><a href="#">Add</a></li>
-      </ul>
-    </li>
-
-        <li><a href="{{ url_for('categories_index') }}">Categories</a>
+    <!--
+      <li><a href="#">Clips</a>
+        <ul>
+          <li><a href="{ url_for('clips_index') }">List</a></li>
+          <li><a href="{ url_for('clips_form') }">Add</a></li>
+        </ul>
+      </li>
+    -->
+    <li><a href="{{ url_for('categories_index') }}">Categories</a>
       <ul>
         <li><a href="{{ url_for('categories_index') }}">List</a></li>
         <li><a href="{{ url_for('categories_form') }}">Add</a></li>

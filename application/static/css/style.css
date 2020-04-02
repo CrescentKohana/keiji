@@ -118,7 +118,12 @@ table {
 }
 
 .item {
-  padding: 0 10px 0 10px;
+  height: 40px;
+}
+
+.edit-element {
+  display: inline-block;
+  margin: 5px 10px 0 0;
 }
 
 /* Input forms and buttons */
@@ -131,6 +136,7 @@ table {
   color: #d6d6d6;
   background-color: rgba(0, 0, 0, 0);
 }
+
 .button:hover{
   color: #000000;
   background-color: #d6d6d6;

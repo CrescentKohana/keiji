@@ -14,46 +14,50 @@
       <td>{{ category.description }}</td>
 
       <td>
-        <button id="edit-button-{{ category.id }}" class="edit button" onclick="show_edit({{ category.id }})">
+        <button style="width: 110px;" id="edit-button-{{ category.id }}" class="edit button" onclick="show_edit({{ category.id }})">
           Edit / Delete
         </button>
       </td>
 
-      <td>
-        <div style="display: none" id="edit-{{ category.id }}" class="edit">
-          <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
-
-                <div>{{ form.name.label }}</div>
-                <div>{{ form.name }}</div>
-
-                  <ul>
-                  {% for error in form.name.errors %}
-                    <li>{{ error }}</li>
-                  {% endfor %}
-                  </ul>
-
-                <div>{{ form.description.label }}</div>
-                <div>{{ form.description }}</div>
-
-                  <ul>
-                  {% for error in form.description.errors %}
-                    <li>{{ error }}</li>
-                  {% endfor %}
-                  </ul>
-
-            <input class="button" type="submit" value="Save"/>
-          </form>
-
-          <form method="POST" action="{{ url_for('categories_delete', category_id=category.id) }}">
-            <input class="button" type="submit" value="Delete"/>
-          </form>
-
-        </div>
-      </td>
     </tr>
     {% endfor %}
-
   </table>
+  <br>
+
+  {% for category in categories %}
+    <div style="display: none" id="edit-{{ category.id }}" class="edit">
+          <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
+
+      <div class="edit-element">
+        <div>{{ form.name.label }}</div>
+        <div>{{ form.name }}</div>
+        <ul>
+          {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <br>
+      <div class="edit-element">
+        <div>{{ form.description.label }}</div>
+        <div>{{ form.description }}</div>
+        <ul>
+          {% for error in form.description.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <br><input class="button edit-element" type="submit" value="Save"/>
+      </form>
+
+      <form method="POST" action="{{ url_for('categories_delete', category_id=category.id) }}">
+        <input class="button" type="submit" value="Delete"/>
+      </form>
+
+    </div>
+  {% endfor %}
+
   <script>
       function show_edit(id) {
           const e = document.getElementById(`edit-${id}`);
