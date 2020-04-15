@@ -28,11 +28,7 @@ def events_form():
 @app.route("/events/<event_id>/edit", methods=["POST"])
 @login_required
 def events_edit(event_id):
-    event_ids = []
-    for row in Event.find_events_user_has_permissions_to(current_user.id):
-        event_ids.append(row[0])
-
-    if int(event_id) in event_ids:
+    if Event.get_event_owner(event_id) == current_user.id:
         form = EventForm(request.form)
 
         if not form.validate():
@@ -57,11 +53,7 @@ def events_edit(event_id):
 @app.route("/events/<event_id>/delete", methods=["POST"])
 @login_required
 def events_delete(event_id):
-    event_ids = []
-    for row in Event.find_events_user_has_permissions_to(current_user.id):
-        event_ids.append(row[0])
-
-    if int(event_id) in event_ids:
+    if Event.get_event_owner(event_id) == current_user.id:
         c = Event.query.get(event_id)
 
         db.session.delete(c)

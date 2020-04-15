@@ -29,5 +29,6 @@ def stats_view():
         events=list(Event.find_events_user_has_permissions_to(current_user.id)),
         overall_time=overall_time,
         user=current_user,
-        form=CategoryForm
+        form=CategoryForm,
+        str=str
     )
