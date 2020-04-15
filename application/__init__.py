@@ -1,5 +1,4 @@
 from flask import Flask, url_for
-
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
@@ -8,13 +7,27 @@ import os
 if os.environ.get("HEROKU"):
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
 else:
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///categories.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///keiji_data.db"
     app.config["SQLALCHEMY_ECHO"] = True
     # SQLALCHEMY_TRACK_MODIFICATIONS would add significant overhead, so it is disabled.
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
 db = SQLAlchemy(app)
+
+
+# User login
+from application.auth.models import User
+from os import urandom
+app.config["SECRET_KEY"] = urandom(32)
+
+from flask_login import LoginManager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+login_manager.login_view = "auth_login"
+login_manager.login_message = "Please login to use this functionality."
+
 
 # Core functionality
 from application import views
@@ -31,17 +44,7 @@ from application.auth import views
 from application.statistics import models
 from application.statistics import views
 
-# User login
-from application.auth.models import User
-from os import urandom
-app.config["SECRET_KEY"] = urandom(32)
 
-from flask_login import LoginManager
-login_manager = LoginManager()
-login_manager.init_app(app)
-
-login_manager.login_view = "auth_login"
-login_manager.login_message = "Please login to use this functionality."
 
 
 @login_manager.user_loader

@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h1>Statistics</h1>
-
-    <h2>Per category</h2>
-    <table>
+  <h1>Statistics (h:min)</h1>
+  <h3>Per category</h3>
+  <table>
     <tr class="label">
       <th>Category</th>
       <th>Time spent</th>
@@ -13,10 +12,10 @@
     {% for i in range(categories_len) %}
     <tr class="item">
       <td>{{ categories[i].name }}</td>
-      <td>{{ category_time[i] }}</td>
+      <td>{{ str(category_time[i])[:-3] }}</td>
     </tr>
     {% endfor %}
   </table>
-  <h2>Overall time spent</h2>
-  {{ overall_time }}
+  <h3>Overall time spent</h3>
+  {{ str(overall_time)[:-3] }}
 {% endblock %}

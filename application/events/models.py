@@ -40,5 +40,17 @@ class Event(Base):
                      current_user_id).params(user_id=current_user_id)
 
         result = db.engine.execute(query)
+        return result
 
+    @staticmethod
+    def get_event_owner(event_id):
+        query = text("SELECT C.account_id "
+                     "FROM Category as C "
+                     "LEFT JOIN Event as E "
+                     "ON C.id = E.category_id "
+                     "WHERE (E.id = :eid) "
+                     "GROUP BY E.id",
+                     event_id).params(eid=event_id)
+
+        result = db.engine.execute(query)
         return result
