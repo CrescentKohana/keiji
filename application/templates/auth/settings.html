@@ -4,8 +4,8 @@
   <h1>User Settings</h1>
 
   <div>
-    <label for="username">Username <b>(can't edit)</b></label><br>
-    <input type="text" id="username" value="{{ user.username }}" readonly>
+    <label for="username">Username</label><br>
+    <input type="text" id="username" value="{{ user.username }}" disabled>
   </div>
 
   <form method="POST" action="{{ url_for('user_edit') }}">
