@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h1>Add an clip</h1>
+  <form method="POST" action="{{ url_for('clips_create') }}">
+    <table>
+      <tr>
+        <td>{{ form.category_id.label }}</td>
+        <td>{{ form.category_id }}</td>
+        <td>
+          <ul>
+            {% for error in form.category_id.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ form.content.label }}</td>
+        <td>{{ form.content }}</td>
+        <td>
+          <ul>
+            {% for error in form.content.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <input class="button" type="submit" value="Add a new clip"/>
+        </td>
+      </tr>
+    </table>
+  </form>
+{% endblock %}

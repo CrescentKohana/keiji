@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h1>Clips</h1>
+  <table>
+    <tr class="label">
+      <th>{{ form.category_id.label }}</th>
+      <th>{{ form.content.label }}</th>
+    </tr>
+
+    {% for clip in clips %}
+    <tr class="item">
+      <td>{{ category.query.filter_by(id=clip.category_id).first().name }}</td>
+      <td>{{ clip.content }}</td>
+
+      <td>
+        <button style="width: 110px;" id="edit-button-{{ clip.id }}" class="edit button" onclick="show_edit({{ clip.id }})">
+          Edit / Delete
+        </button>
+      </td>
+
+    </tr>
+    {% endfor %}
+  </table>
+  <br>
+
+  {% for clip in clips %}
+    <div style="display: none" id="edit-{{ clip.id }}" class="edit">
+      <form method="POST" action="{{ url_for('clips_edit', clip_id=clip.id) }}">
+
+      <div class="edit-element">
+        <div>{{ form.category_id.label }}</div>
+        <div>{{ form.category_id }}</div>
+        <ul>
+          {% for error in form.category_id.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <br>
+      <div class="edit-element">
+        <div>{{ form.content.label }}</div>
+        <div>{{ form.content }}</div>
+        <ul>
+          {% for error in form.content.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <br><input class="button edit-element" type="submit" value="Save"/>
+      </form>
+
+      <form method="POST" action="{{ url_for('clips_delete', clip_id=clip.id) }}">
+        <input class="button" type="submit" value="Delete"/>
+      </form>
+
+    </div>
+  {% endfor %}
+
+  <script>
+      function show_edit(id) {
+          const e = document.getElementById(`edit-${id}`);
+          const eClasses = document.getElementsByClassName(`edit`);
+
+          if (e.style.display === "none") {
+              for (const eClass of eClasses) {
+                  eClass.style.display = "none";
+              }
+
+              document.getElementById(`edit-button-${id}`).style.display = 'Block';
+              document.getElementById(`edit-button-${id}`).innerText = 'Cancel';
+              e.style.display = "block";
+          } else {
+              document.getElementById(`edit-button-${id}`).innerText = 'Edit / Delete';
+              e.style.display = "none";
+              document.body.innerHTML += '<form id="cancel-edit" action="{{ url_for('clips_index')}}" ' +
+                  'method="post"><input class="button" type="hidden"></form>';
+              document.getElementById("cancel-edit").submit();
+          }
+      }
+  </script>
+{% endblock %}

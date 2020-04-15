@@ -20,14 +20,12 @@
         <li><a href="{{ url_for('events_form') }}">Add</a></li>
       </ul>
     </li>
-    <!--
-    <li><a href="#">Clips</a>
+    <li><a href="{{ url_for('clips_index') }}">Clips</a>
       <ul>
-        <li><a href="#">List</a></li>
-        <li><a href="#">Add</a></li>
+        <li><a href="{{ url_for('clips_index') }}">List</a></li>
+        <li><a href="{{ url_for('clips_form') }}">Add</a></li>
       </ul>
     </li>
-    -->
     <li><a href="{{ url_for('categories_index') }}">Categories</a>
       <ul>
         <li><a href="{{ url_for('categories_index') }}">List</a></li>
@@ -48,7 +46,7 @@
   </span>
 </div>
 
-<div id="content">
+<div id="main_content">
   {% block body %}
   {% endblock %}
 </div>
