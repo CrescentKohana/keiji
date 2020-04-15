@@ -1,9 +1,9 @@
 from flask import redirect, render_template, request, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 from application import app, db
 from application.auth.models import User
-from application.auth.forms import LoginForm, RegisterForm
+from application.auth.forms import LoginForm, RegisterForm, SettingsForm
 
 
 @app.route("/auth/login", methods=["GET", "POST"])
@@ -44,3 +44,38 @@ def auth_register():
     db.session().commit()
 
     return redirect(url_for("auth_login"))
+
+
+@app.route("/auth/settings", methods=["GET"])
+@login_required
+def settings_view():
+    return render_template(
+        "auth/settings.html",
+        user=User.query.filter(User.id == current_user.id).first(),
+        form=SettingsForm()
+    )
+
+
+@app.route("/auth/settings", methods=["POST"])
+@login_required
+def user_edit():
+    form = SettingsForm(request.form)
+    c = User.query.get(current_user.id)
+
+    if not form.password.data:
+        form.password.data = c.password
+
+    if not form.validate():
+        return render_template(
+            "auth/settings.html",
+            user=User.query.filter(User.id == current_user.id).first(),
+            form=form
+        )
+
+    c.nickname = form.nickname.data
+    c.password = form.password.data
+    c.language = form.language.data
+
+    db.session().commit()
+
+    return redirect(url_for("events_index"))

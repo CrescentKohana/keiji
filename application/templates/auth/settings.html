@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <h1>User Settings</h1>
+
+  <div>
+    <label for="username">Username <b>(can't edit)</b></label><br>
+    <input type="text" id="username" value="{{ user.username }}" readonly>
+  </div>
+
+  <form method="POST" action="{{ url_for('user_edit') }}">
+
+  <div class="edit-element">
+    <div>{{ form.nickname.label }}</div>
+    <div>{{ form.nickname(value=user.nickname) }}</div>
+    <ul>
+      {% for error in form.nickname.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <br>
+
+  <div class="edit-element">
+    <div>{{ form.password.label }}</div>
+    <div>{{ form.password }}</div>
+    <ul>
+      {% for error in form.password.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+
+    <div class="edit-element">
+    <div>{{ form.language.label }}</div>
+    <div>{{ form.language(value="jp") }}</div>
+    <ul>
+      {% for error in form.language.errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    </div>
+
+  </div>
+  <br><input class="button edit-element" type="submit" value="Save"/>
+  </form>
+
+{% endblock %}

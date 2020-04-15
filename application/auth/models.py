@@ -5,8 +5,8 @@ from application.models import Base
 class User(Base):
     __tablename__ = "account"
 
+    username = db.Column(db.String(64), nullable=False)
     nickname = db.Column(db.String(64),  nullable=False)
-    username = db.Column(db.String(64),  nullable=False)
     password = db.Column(db.String(256), nullable=False)
     language = db.Column(db.String(2),   nullable=False)
 

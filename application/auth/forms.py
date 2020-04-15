@@ -22,3 +22,16 @@ class RegisterForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+
+class SettingsForm(FlaskForm):
+    nickname = StringField("Nickname", [validators.Length(min=3, max=64), validators.data_required()])
+    password = PasswordField("Password", [validators.Length(min=8, max=256)])
+    language = SelectField(
+        "Language",
+        [validators.data_required()],
+        choices=[('en', 'English'), ('fi', 'Finnish'), ('jp', 'Japanese')]
+    )
+
+    class Meta:
+        csrf = False

@@ -37,7 +37,7 @@
 
   <span id="auth">
   {% if current_user.is_authenticated %}
-    {{ current_user.nickname }} |
+    <a href="{{ url_for('settings_view') }}">{{ current_user.nickname }}</a> |
     <a href="{{ url_for('auth_logout') }}">log out</a>
   {% else %}
     <a href="{{ url_for('auth_login') }}">Login</a> |

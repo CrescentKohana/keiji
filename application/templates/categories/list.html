@@ -26,7 +26,7 @@
 
   {% for category in categories %}
     <div style="display: none" id="edit-{{ category.id }}" class="edit">
-          <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
+      <form method="POST" action="{{ url_for('categories_edit', category_id=category.id) }}">
 
       <div class="edit-element">
         <div>{{ form.name.label }}</div>
