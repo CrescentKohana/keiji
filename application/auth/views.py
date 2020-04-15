@@ -78,4 +78,4 @@ def user_edit():
 
     db.session().commit()
 
-    return redirect(url_for("events_index"))
+    return redirect("/")
