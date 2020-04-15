@@ -32,19 +32,20 @@ login_manager.login_message = "Please login to use this functionality."
 # Core functionality
 from application import views
 
+from application.auth import models
+from application.auth import views
+
 from application.categories import models
 from application.categories import views
 
 from application.events import models
 from application.events import views
 
-from application.auth import models
-from application.auth import views
+from application.clips import models
+from application.clips import views
 
 from application.statistics import models
 from application.statistics import views
-
-
 
 
 @login_manager.user_loader

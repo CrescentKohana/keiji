@@ -39,8 +39,7 @@ class Event(Base):
                      "GROUP BY E.id",
                      current_user_id).params(user_id=current_user_id)
 
-        result = db.engine.execute(query)
-        return result
+        return db.engine.execute(query)
 
     @staticmethod
     def get_event_owner(event_id):
@@ -52,5 +51,4 @@ class Event(Base):
                      "GROUP BY E.id",
                      event_id).params(eid=event_id)
 
-        result = db.engine.execute(query)
-        return result
+        return db.engine.execute(query).first().items()[0][1]
