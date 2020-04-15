@@ -30,19 +30,20 @@ class Clip(Base):
                      "LEFT JOIN Category as C "
                      "ON C.id = CL.category_id "
                      "WHERE (C.account_id = :user_id) "
-                     "GROUP BY CL.id",
+                     "GROUP BY CL.id, CL.date_created, CL.date_modified, CL.content, CL.category_id",
                      current_user_id).params(user_id=current_user_id)
 
         return db.engine.execute(query)
 
     @staticmethod
     def get_clip_owner(clip_id):
+        db.relationship("C")
         query = text("SELECT C.account_id "
                      "FROM Category as C "
                      "LEFT JOIN Clip as CL "
                      "ON C.id = CL.category_id "
                      "WHERE (CL.id = :clid) "
-                     "GROUP BY CL.id",
+                     "GROUP BY C.account_id",
                      clip_id).params(clid=clip_id)
 
         return db.engine.execute(query).first().items()[0][1]

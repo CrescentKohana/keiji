@@ -36,7 +36,7 @@ class Event(Base):
                      "LEFT JOIN Category as C "
                      "ON C.id = E.category_id "
                      "WHERE (C.account_id = :user_id) "
-                     "GROUP BY E.id",
+                     "GROUP BY E.id, E.date_created, E.date_modified, E.description, E.duration, E.category_id",
                      current_user_id).params(user_id=current_user_id)
 
         return db.engine.execute(query)
@@ -48,7 +48,7 @@ class Event(Base):
                      "LEFT JOIN Event as E "
                      "ON C.id = E.category_id "
                      "WHERE (E.id = :eid) "
-                     "GROUP BY E.id",
+                     "GROUP BY C.account_id",
                      event_id).params(eid=event_id)
 
         return db.engine.execute(query).first().items()[0][1]
