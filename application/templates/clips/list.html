@@ -2,26 +2,25 @@
 
 {% block body %}
   <h1>Clips</h1>
-  <table>
-    <tr class="label">
-      <th>{{ form.category_id.label }}</th>
-      <th>{{ form.content.label }}</th>
-    </tr>
-
-    {% for clip in clips %}
-    <tr class="item">
-      <td>{{ category.query.filter_by(id=clip.category_id).first().name }}</td>
-      <td>{{ clip.content }}</td>
-
-      <td>
-        <button style="width: 110px;" id="edit-button-{{ clip.id }}" class="edit button" onclick="show_edit({{ clip.id }})">
+  <div class="rTable">
+    <div class="rTableBody">
+      <div class="rTableRow label">
+        <div class="rTableHead">{{ form.category_id.label }}</div>
+        <div class="rTableHead">{{ form.content.label }}</div>
+      </div>
+      {% for clip in clips %}
+      <div class="rTableRow">
+        <div class="rTableCell item">{{ category.query.filter_by(id=clip.category_id).first().name }}</div>
+        <div class="rTableCell item">{{ clip.content }}</div>
+      <div class="rTableCell">
+        <button style="width: 110px;" id="edit-button-{{ clip.id }}" class="edit button" onclick="show_edit({{ clip.id }}, `{{ url_for('clips_index')}}`)">
           Edit / Delete
         </button>
-      </td>
-
-    </tr>
-    {% endfor %}
-  </table>
+      </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
   <br>
 
   {% for clip in clips %}
@@ -40,7 +39,7 @@
       <br>
       <div class="edit-element">
         <div>{{ form.content.label }}</div>
-        <div>{{ form.content }}</div>
+        <div class="input-box">{{ form.content }}</div>
         <ul>
           {% for error in form.content.errors %}
             <li>{{ error }}</li>
@@ -58,26 +57,5 @@
     </div>
   {% endfor %}
 
-  <script>
-      function show_edit(id) {
-          const e = document.getElementById(`edit-${id}`);
-          const eClasses = document.getElementsByClassName(`edit`);
-
-          if (e.style.display === "none") {
-              for (const eClass of eClasses) {
-                  eClass.style.display = "none";
-              }
-
-              document.getElementById(`edit-button-${id}`).style.display = 'Block';
-              document.getElementById(`edit-button-${id}`).innerText = 'Cancel';
-              e.style.display = "block";
-          } else {
-              document.getElementById(`edit-button-${id}`).innerText = 'Edit / Delete';
-              e.style.display = "none";
-              document.body.innerHTML += '<form id="cancel-edit" action="{{ url_for('clips_index')}}" ' +
-                  'method="post"><input class="button" type="hidden"></form>';
-              document.getElementById("cancel-edit").submit();
-          }
-      }
-  </script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'js/edit.js') }}"></script>
 {% endblock %}

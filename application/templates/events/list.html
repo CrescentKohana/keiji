@@ -2,28 +2,27 @@
 
 {% block body %}
   <h1>Events</h1>
-  <table>
-    <tr class="label">
-      <th>{{ form.category_id.label }}</th>
-      <th>{{ form.duration.label }}</th>
-      <th>{{ form.description.label }}</th>
-    </tr>
-
-    {% for event in events %}
-    <tr class="item">
-      <td>{{ category.query.filter_by(id=event.category_id).first().name }}</td>
-      <td>{{ event.duration }}</td>
-      <td>{{ event.description }}</td>
-
-      <td>
-        <button style="width: 110px;" id="edit-button-{{ event.id }}" class="edit button" onclick="show_edit({{ event.id }})">
+  <div class="rTable">
+    <div class="rTableBody">
+      <div class="rTableRow label">
+        <div class="rTableHead">{{ form.category_id.label }}</div>
+        <div class="rTableHead">{{ form.duration.label }}</div>
+        <div class="rTableHead">{{ form.description.label }}</div>
+      </div>
+      {% for event in events %}
+      <div class="rTableRow">
+        <div class="rTableCell item">{{ category.query.filter_by(id=event.category_id).first().name }}</div>
+        <div class="rTableCell item">{{ event.duration  }}</div>
+        <div class="rTableCell item">{{ event.description  }}</div>
+      <div class="rTableCell">
+        <button style="width: 110px;" id="edit-button-{{ event.id }}" class="edit button" onclick="show_edit({{ event.id }}, `{{ url_for('events_index')}}`)">
           Edit / Delete
         </button>
-      </td>
-
-    </tr>
-    {% endfor %}
-  </table>
+      </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
   <br>
 
   {% for event in events %}
@@ -69,26 +68,5 @@
     </div>
   {% endfor %}
 
-  <script>
-      function show_edit(id) {
-          const e = document.getElementById(`edit-${id}`);
-          const eClasses = document.getElementsByClassName(`edit`);
-
-          if (e.style.display === "none") {
-              for (const eClass of eClasses) {
-                  eClass.style.display = "none";
-              }
-
-              document.getElementById(`edit-button-${id}`).style.display = 'Block';
-              document.getElementById(`edit-button-${id}`).innerText = 'Cancel';
-              e.style.display = "block";
-          } else {
-              document.getElementById(`edit-button-${id}`).innerText = 'Edit / Delete';
-              e.style.display = "none";
-              document.body.innerHTML += '<form id="cancel-edit" action="{{ url_for('events_index')}}" ' +
-                  'method="post"><input class="button" type="hidden"></form>';
-              document.getElementById("cancel-edit").submit();
-          }
-      }
-  </script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'js/edit.js') }}"></script>
 {% endblock %}

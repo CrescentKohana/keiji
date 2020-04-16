@@ -34,9 +34,9 @@ body {
 }
 
 #footer {
-  position: absolute;
+  position: relative;
   height: 40px;
-  margin: 0 calc(10% + 10px) 0 calc(10% + 10px);
+  margin: 20px calc(10% + 10px) 0 calc(10% + 10px);
   left: 0;
   bottom: 0;
 }
@@ -113,7 +113,7 @@ a:hover, a:active {
 
 /* Listing */
 table {
-  width: 100%;
+  width: 50%;
 }
 
 .label {
@@ -122,12 +122,42 @@ table {
 }
 
 .item {
-  height: 40px;
+  padding: 15px 20px 15px 0;
+  word-break: break-word;
 }
 
 .edit-element {
   display: inline-block;
   margin: 5px 10px 0 0;
+}
+
+.rTable {
+  width: 100%;
+  display: table;
+  word-break: keep-all;
+}
+
+.rTableRow {
+  display: table-row;
+}
+
+.rTableHead {
+  font-size: 1.5em;
+  display: table-cell;
+  padding: 0 10px 10px 0;
+}
+
+.rTableCell {
+  display: table-cell;
+  border-top: 1px solid rgba(216, 0, 84, 0.47);
+}
+
+.rTableHeading, .rTableFoot, .rTableHeading {
+  display: table-header-group;
+}
+
+.rTableBody {
+  display: table-row-group;
 }
 
 /* Input forms and buttons */
@@ -144,4 +174,9 @@ table {
 .button:hover{
   color: #000000;
   background-color: #d6d6d6;
+}
+
+textarea {
+  width: 250%;
+  height: 100px;
 }
