@@ -1,4 +1,4 @@
-function show_edit(id, clips_index) {
+function show_edit(id, action) {
   const e = document.getElementById(`edit-${id}`);
   const eClasses = document.getElementsByClassName(`edit`);
 
@@ -17,7 +17,7 @@ function show_edit(id, clips_index) {
       document.getElementById(`edit-button-${id}`).innerText = 'Edit / Delete';
       e.style.display = "none";
       document.body.innerHTML +=
-          `<form id="cancel-edit" action="${clips_index}" method="post"><input class="button" type="hidden"></form>`;
+          `<form id="cancel-edit" action="${action}" method="post"><input class="button" type="hidden"></form>`;
       document.getElementById("cancel-edit").submit();
   }
 }

@@ -13,7 +13,7 @@
         <div class="rTableCell item">{{ category.name }}</div>
         <div class="rTableCell item">{{ category.description }}</div>
       <div class="rTableCell">
-        <button style="width: 110px;" id="edit-button-{{ category.id }}" class="edit button" onclick="show_edit({{ category.id }}, `{{ url_for('categories_index')}} }}`)">
+        <button style="width: 110px;" id="edit-button-{{ category.id }}" class="edit button" onclick="show_edit({{ category.id }}, `{{ url_for('categories_index')}}`)">
           Edit / Delete
         </button>
       </div>
