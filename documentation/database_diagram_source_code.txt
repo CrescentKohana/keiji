@@ -1,11 +1,11 @@
-// https://dbdiagram.io/
+# https://dbdiagram.io/
 
 Table Users as U {
   id int [pk]
   username varchar [unique, not null]
   nickname varchar [not null]
-  pw_hash varchar [not null]
-  lang varchar [not null]
+  password varchar [not null]
+  language varchar [not null]
   date_created timestamp [not null]
 }
 
@@ -32,5 +32,5 @@ Table Clips as Cl {
   category_id int [ref: > Ca.id, not null]
   date_created timestamp [not null]
   date_modified timestamp [not null]
-  clip varchar
+  content varchar
 }
