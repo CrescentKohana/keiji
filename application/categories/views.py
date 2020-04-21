@@ -15,7 +15,8 @@ def categories_index():
     return render_template(
         "categories/list.html",
         categories=list(Category.query.filter(Category.account_id == current_user.id)),
-        form=CategoryForm()
+        form=CategoryForm(),
+        delete_error=""
     )
 
 
