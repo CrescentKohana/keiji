@@ -1,10 +1,42 @@
 # Käyttötapaukset
 ## Mitä sillä voi tehdä?
- * Luoda oman tunnuksen (käyttäjänimi, email, salasana, kielivalinta jne)
- * Luoda kategorioita tapahtumille
- * Kirjata tapahtumia ajan kanssa
- * Luoda muistiinpanoja / otteita
- * Katsoa ajankäytön kohdekielen parissa valitulla ajanjaksolla (yleinen tilastosivu)
+Luoda oman tunnuksen (lempinimi, käyttäjänimi, salasana, kielivalinta): 
+```
+INSERT INTO User 
+    (nickname,username,password,language) 
+    VALUES ("dev", "developer test", "test4200", "fi");
+```
+Luoda kategorioita tapahtumille ja klipeille: 
+```
+INSERT INTO Category 
+    (user_id,date_created,date_modified,name,description) 
+    VALUES (1, TIMESTAMP, TIMESTAMP, "Light novels", "Also called ラノベ (ranobe) in Japan");
+```
+Kirjata tapahtumia ajan kanssa: 
+```
+INSERT INTO Event 
+    (category_id,date_created,date_modified,description,duration) 
+    VALUES (1, TIMESTAMP, TIMESTAMP, "月光 (Gekkou)", 60);
+```
+Luoda muistiinpanoja / klippejä: 
+```
+INSERT INTO Clip 
+    (category_id,date_created,date_modified,content) 
+    VALUES (1, TIMESTAMP, TIMESTAMP, "eg. citate from a book");
+```
+Muokata kaikkea tallennettua dataa, jonka on itse luonut: 
+```
+UPDATE Event SET duration=90 WHERE id=1;
+```
+Katsoa ajankäytön kohdekielen parissa per kategoria: 
+```
+SELECT COALESCE(SUM(E.duration),0) 
+    FROM Category as C LEFT JOIN Event as E 
+    ON C.id = E.category_id 
+    WHERE (C.account_id = 1) 
+    GROUP BY C.id 
+    ORDER BY C.id;
+```
 
 ## Tarkemmin käyttäjän näkökulmasta
 Kieltä opiskeleva henkilö voi haluta merkitä talteen paljon on käyttänyt aikaa kohdekielen parissa. Esimerkiksi: 
