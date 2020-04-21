@@ -5,8 +5,8 @@ from application.models import Base
 class User(Base):
     __tablename__ = "account"
 
-    username = db.Column(db.String(64), nullable=False)
-    nickname = db.Column(db.String(64),  nullable=False)
+    username = db.Column(db.String(32), nullable=False)
+    nickname = db.Column(db.String(16),  nullable=False)
     password = db.Column(db.String(256), nullable=False)
     language = db.Column(db.String(2),   nullable=False)
 
@@ -17,15 +17,6 @@ class User(Base):
         self.username = username
         self.password = password
         self.language = language
-
-    def get_id(self):
-        return self.id
-
-    def is_active(self):
-        return True
-
-    def is_anonymous(self):
-        return False
 
     def is_authenticated(self):
         return True
