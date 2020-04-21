@@ -5,6 +5,9 @@ from application import app, db
 from application.categories.models import Category
 from application.categories.forms import CategoryForm
 
+from application.events.models import Event
+from application.clips.models import Clip
+
 
 @app.route("/categories", methods=["GET", "POST"])
 @login_required
@@ -49,10 +52,11 @@ def categories_edit(category_id):
 @login_required
 def categories_delete(category_id):
     if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
-        c = Category.query.get(category_id)
+        if not Event.query.filter_by(category_id=category_id) or not Clip.query.filter_by(category_id=category_id):
+            c = Category.query.get(category_id)
 
-        db.session.delete(c)
-        db.session().commit()
+            db.session.delete(c)
+            db.session().commit()
 
     return redirect(url_for("categories_index"))
 
