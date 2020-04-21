@@ -57,6 +57,13 @@ def categories_delete(category_id):
 
             db.session.delete(c)
             db.session().commit()
+        else:
+            return render_template(
+                "categories/list.html",
+                categories=list(Category.query.filter(Category.account_id == current_user.id)),
+                form=CategoryForm(),
+                delete_error="This category can't be deleted as it has Events or Clips associated with it."
+            )
 
     return redirect(url_for("categories_index"))
 
