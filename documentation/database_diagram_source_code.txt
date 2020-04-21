@@ -1,6 +1,6 @@
 # https://dbdiagram.io/
 
-Table Users as U {
+Table User as U {
   id int [pk]
   username varchar [unique, not null]
   nickname varchar [not null]
@@ -9,7 +9,7 @@ Table Users as U {
   date_created timestamp [not null]
 }
 
-Table Categories as Ca {
+Table Category as Ca {
   id int [pk]
   user_id int [ref: > U.id, not null]
   date_created timestamp [not null]
@@ -18,7 +18,7 @@ Table Categories as Ca {
   description varchar
 }
 
-Table Events as E {
+Table Event as E {
   id int [pk]
   category_id int [ref: > Ca.id, not null]
   date_created timestamp [not null]
@@ -27,7 +27,7 @@ Table Events as E {
   duration int
 }
 
-Table Clips as Cl {
+Table Clip as Cl {
   id int [pk]
   category_id int [ref: > Ca.id, not null]
   date_created timestamp [not null]
