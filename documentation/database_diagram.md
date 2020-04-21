@@ -14,7 +14,7 @@ CREATE TABLE User (
     password VARCHAR(256) NOT NULL, 
     language VARCHAR(2) NOT NULL, 
     date_created TIMESTAMP NOT NULL
-)
+);
 
 CREATE TABLE Category (
     id INTEGER PRIMARY KEY, 
@@ -24,7 +24,7 @@ CREATE TABLE Category (
     name VARCHAR(64) NOT NULL, 
     description VARCHAR(1024) NOT NULL, 
     FOREIGN KEY(user_id) REFERENCES User(id)
-)
+);
 
 CREATE TABLE Event (
     id INTEGER PRIMARY KEY, 
@@ -34,7 +34,7 @@ CREATE TABLE Event (
     description VARCHAR(2048), 
     duration INTEGER NOT NULL, 
     FOREIGN KEY(category_id) REFERENCES Category(id)
-)
+);
 
 CREATE TABLE Clip (
     id INTEGER PRIMARY KEY, 
@@ -43,5 +43,5 @@ CREATE TABLE Clip (
     date_modified TIMESTAMP NOT NULL, 
     content VARCHAR(4096) NOT NULL, 
     FOREIGN KEY(category_id) REFERENCES Category(id)
-)
+);
 ```
