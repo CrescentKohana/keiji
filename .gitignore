@@ -1,6 +1,6 @@
 /venv/
 __pycache__
-keiji_data.db
+application/keiji_data.db
 .idea
 
 # Byte-compiled / optimized / DLL files

@@ -17,3 +17,7 @@ Käyttäjä pystyy nyt myöhemmin tarkistamaan tilasto-sivulta paljon hän on ke
 Käyttäjä voi haluta myös ottaa talteen hyviä otteita kuluttamastaan viihteestä samaan palveluun. Esimerkiksi: 
 * "Löysin tämän kivan twiitin, joka oli hienosti artikuloitu. Haluan sen talteen."
 * "Lukemassani kirjassa oli mielenkiintoinen virke ja haluan sen talteen."
+
+## Tulevaisuudessa
+* Käännökset kieliominaisuudelle
+* Integraatio palveluihin (esm. YouTube, Spotify) automaattiselle ajanseurannalle

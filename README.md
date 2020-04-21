@@ -1,9 +1,10 @@
 # Web-tietokantasovellus Keiji
 Sovelluksen nimi tulee japaninkielisestä sanasta 計時, joka tarkoittaa _ottaa aikaa_. Se on suunniteltu kielten opiskelun kannalta. Sillä voi kartoittaa ajankäyttöä kohdekielen parissa, ja ottaa myös ylös muistiinpanoja. Sovellus löytyy osoitteesta: https://keiji-tsoha2020.herokuapp.com. Testikäyttäjätunnus on `dev` ja salasana sille on `test4200`. Sen nickname eli kirjautumisen jälkeen näkyvä nimi on `developer test`.
 
-Tietokantakaavio [täällä](documentation/database_diagram.md)
-Käyttötapaukset [täällä](documentation/user_stories.md).
-Käyttöohje [täällä](documentation/user_guide.md).
+## Dokumentaatio
+* [Käyttöohje](documentation/user_guide.md)
+* [Käyttötapaukset](documentation/user_stories.md)
+* [Tietokantakaavio](documentation/database_diagram.md)
 
 ## Riippuvuudet
  * Python 3 (>= 3.5)
@@ -28,6 +29,7 @@ Viimeiseksi asenna tarvittavat riippuvuudet ajamalla komento:
 ```
 pip install -r requirements.txt
 ```
+Halutessasi voit vielä laittaa päälle debug-moodin [run.py-tiedostosta](run.py) asettamalla debug-parametrin arvoon `True`.
 
 Sovellus käynnistyy nyt ajamalla komento (tai ilman numeroa kolme): 
 ```
