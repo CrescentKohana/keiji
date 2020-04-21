@@ -6,8 +6,8 @@ Käyttötapaukset [täällä](documentation/user_stories.md).
 Käyttöohje [täällä](documentation/user_guide.md).
 
 ## Riippuvuudet
- * Python 3 (>= Python 3.5)
- * PostgreSQL 12.2 (valinnainen, muuten SQLite)
+ * Python 3 (>= 3.5)
+ * PostgreSQL (>= 12.2 || valinnainen, muuten SQLite)
  * requirements.txt
 
 ## Asennusohje
@@ -20,7 +20,7 @@ git clone https://github.com/Luukuton/tsoha-hy2020.git
 Seuraavaksi siirry kansioon `tsoha-2020` ja aja komento (tai ilman numeroa kolme):  
 ```
 python3 -m venv venv
-``` 
+```
 
 Nyt käynnistä venv ajamalla skripti `venv\Scripts\activate` tai `venv\bin\activate`.
 
