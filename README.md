@@ -31,7 +31,18 @@ pip install -r requirements.txt
 ```
 Halutessasi voit vielä laittaa päälle debug-moodin [run.py-tiedostosta](run.py) asettamalla debug-parametrin arvoon `True`.
 
-Sovellus käynnistyy nyt ajamalla komento (tai ilman numeroa kolme): 
+Tässä kohtaa, jos haluat ajaa sovellusta lokaalisti aja seuraava komento (tai ilman numeroa kolme): 
 ```
 python3 run.py
+```
+Jos haluatkin ajaa sovellusta pilvessä (tässä esimerkkinä Heroku), se onnistuu ajamalla seuraava komento venv-ympäristössä: 
+```
+heroku create sovelluksesi-nimi
+```
+Nyt lähetetään vielä sovellus Herokun versionhallintaan: 
+```
+git remote add heroku https://git.heroku.com/sovelluksesi-nimi.git
+git add .
+git commit -m "Initial commit"
+git push heroku master
 ```
