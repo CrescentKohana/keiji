@@ -6,7 +6,7 @@ from sqlalchemy import text
 class Statistics:
     @staticmethod
     def time_spent_on_category(current_user_id):
-        query = text("SELECT C.id, C,name, COALESCE(SUM(E.duration),0) "
+        query = text("SELECT C.id, C.name, COALESCE(SUM(E.duration),0) "
                      "FROM Category as C "
                      "LEFT JOIN Event as E ON C.id = E.category_id "
                      "WHERE (C.account_id = :user_id) "
