@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class User(Base):
     __tablename__ = "account"
@@ -19,7 +21,7 @@ class User(Base):
     def __init__(self, nickname, username, password, language):
         self.nickname = nickname
         self.username = username
-        self.password = password
+        self.password = generate_password_hash(password)
         self.language = language
 
     def get_id(self):
@@ -33,3 +35,6 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
