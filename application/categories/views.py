@@ -26,9 +26,12 @@ def categories_form():
     return render_template("categories/new.html", form=CategoryForm())
 
 
-@app.route("/categories/<category_id>/edit", methods=["POST"])
+@app.route("/categories/<category_id>/edit", methods=["GET", "POST"])
 @login_required
 def categories_edit(category_id):
+    if request.method == "GET":
+        categories_index()
+
     if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
         form = CategoryForm(request.form)
 
@@ -49,9 +52,12 @@ def categories_edit(category_id):
     return redirect(url_for("categories_index"))
 
 
-@app.route("/categories/<category_id>/delete", methods=["POST"])
+@app.route("/categories/<category_id>/delete", methods=["POST", "GET"])
 @login_required
 def categories_delete(category_id):
+    if request.method == "GET":
+        categories_index()
+
     if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
         if not Event.query.filter_by(category_id=category_id).first() \
                 and not Category.query.join(Clip.categories).filter_by(id=category_id).first():
