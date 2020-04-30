@@ -15,17 +15,15 @@ from application.categories.forms import CategoryForm
 @app.route("/statistics", methods=["GET"])
 @login_required
 def stats_view():
-    category_times = Statistics.time_spent_on_category(current_user.id)
+    categories = Statistics.time_spent_on_category(current_user.id)
     overall_time = datetime.timedelta(0)
-    for i in category_times:
-        overall_time += i
+    for i in categories.keys():
+        overall_time += categories[i][1]
 
-    categories = list(Category.query.filter(Category.account_id == current_user.id))
     return render_template(
         "statistics/stats_view.html",
         categories=categories,
-        category_time=category_times,
-        categories_len=len(categories),
+        category_ids=categories.keys(),
         events=list(Event.find_events_user_has_permissions_to(current_user.id)),
         overall_time=overall_time,
         user=current_user,

@@ -9,10 +9,10 @@
       <th>Time spent</th>
     </tr>
 
-    {% for i in range(categories_len) %}
+    {% for i in category_ids %}
     <tr class="item">
-      <td>{{ categories[i].name }}</td>
-      <td>{{ str(category_time[i])[:-3] }}</td>
+      <td>{{ categories[i][0] }}</td>
+      <td>{{ str(categories[i][1])[:-3] }}</td>
     </tr>
     {% endfor %}
   </table>
