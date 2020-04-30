@@ -2,12 +2,17 @@
 
 {% block body %}
   <h1>Clips</h1>
+  {% if not clips[0] %}
+    <h3>Looks like there aren't any clips.</h3>
+  {% endif %}
   <div class="rTable">
     <div class="rTableBody">
-      <div class="rTableRow label">
-        <div class="rTableHead">{{ form.category_id.label }}</div>
-        <div class="rTableHead">{{ form.content.label }}</div>
-      </div>
+      {% if not clips[0] %}
+        <div class="rTableRow label">
+          <div class="rTableHead">{{ form.category_id.label }}</div>
+          <div class="rTableHead">{{ form.content.label }}</div>
+        </div>
+      {% endif %}
       {% for clip in clips %}
       <div class="rTableRow">
         <div class="rTableCell item">{{ clip_categories[clip.id] }}</div>
@@ -56,6 +61,10 @@
 
     </div>
   {% endfor %}
+
+  <form action="{{ url_for('clips_form') }}">
+    <input class="button" type="submit" value="Add new"/>
+  </form>
 
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/edit.js') }}"></script>
 {% endblock %}
