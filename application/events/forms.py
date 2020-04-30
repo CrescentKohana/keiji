@@ -24,8 +24,8 @@ class EventForm(FlaskForm):
     duration = IntegerField(
         "Duration (min)",
         [
-            validators.number_range(min=1, max=1440, message="Duration must be between %(min)d-%(max)d minutes."),
-            validators.data_required()
+            validators.number_range(min=1, max=1440, message="Duration must be between %(min)d-%(max)d."),
+            validators.data_required(message="Duration must be in whole numbers.")
         ]
     )
 
