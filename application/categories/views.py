@@ -43,6 +43,15 @@ def categories_edit(category_id):
                 form=form
             )
 
+        if Category.query.filter(Category.account_id == current_user.id).filter(Category.name == form.name.data).first():
+            form.name.errors.append("Category named " + form.name.data + " already exists.")
+            return render_template(
+                "categories/list.html",
+                categories=list(Category.query.filter(Category.account_id == current_user.id)),
+                form=form
+            )
+
+
         c = Category.query.get(category_id)
 
         c.name = form.name.data
