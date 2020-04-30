@@ -18,12 +18,15 @@ Kloonaa tämä repositorio kansioon komennolla:
 ```
 git clone https://github.com/Luukuton/tsoha-hy2020.git
 ```
-Seuraavaksi siirry kansioon `tsoha-2020` ja aja komento (tai ilman numeroa kolme):  
+Huom! Pythonin komento voi olla `python` (yleensä Windowsilla) tai `python3` (yleensä Linuxilla).
+
+Seuraavaksi siirry kansioon `tsoha-2020` ja aja komento:  
 ```
 python3 -m venv venv
 ```
+Huom! Voit joutua antamaan activate-skriptille suoritusoikeudet. Linuxilla tämä onnistuu näin: `chmod +x venv\bin\activate`
 
-Nyt käynnistä venv ajamalla skripti `venv\Scripts\activate` tai `venv\bin\activate`.
+Nyt käynnistä venv ajamalla skripti `venv\Scripts\activate` (Windows) tai `source venv\bin\activate` (Linux).
 
 Viimeiseksi asenna tarvittavat riippuvuudet ajamalla komento: 
 ```
@@ -31,7 +34,7 @@ pip install -r requirements.txt
 ```
 Halutessasi voit vielä laittaa päälle debug-moodin [run.py-tiedostosta](run.py) asettamalla debug-parametrin arvoon `True`.
 
-Tässä kohtaa, jos haluat ajaa sovellusta lokaalisti aja seuraava komento (tai ilman numeroa kolme): 
+Tässä kohtaa, jos haluat ajaa sovellusta lokaalisti aja seuraava komento: 
 ```
 python3 run.py
 ```
