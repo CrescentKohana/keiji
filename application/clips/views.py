@@ -38,11 +38,11 @@ def clips_edit(clip_id):
             clip_categories, trimmed_clips = transform_clips(
                 list(Clip.find_clips_user_has_permissions_to(current_user.id))
             )
+
             return render_template(
                 "clips/list.html",
                 clips=trimmed_clips,
                 clip_categories=clip_categories,
-                category=Category.query.filter(Clip.categories).first(),
                 form=form
             )
 
