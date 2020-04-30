@@ -7,12 +7,12 @@
   {% endif %}
     <div class="rTable">
     <div class="rTableBody">
-    {% if categories[0] %}
-      <div class="rTableRow label">
-        <div class="rTableHead">{{ form.name.label }}</div>
-        <div class="rTableHead">{{ form.description.label }}</div>
-      </div>
-    {% endif %}
+      {% if categories[0] %}
+        <div class="rTableRow label">
+          <div class="rTableHead">{{ form.name.label }}</div>
+          <div class="rTableHead">{{ form.description.label }}</div>
+        </div>
+      {% endif %}
       {% for category in categories %}
       <div class="rTableRow">
         <div class="rTableCell item">{{ category.name }}</div>
@@ -62,6 +62,7 @@
 
     </div>
   {% endfor %}
+
   <form action="{{ url_for('categories_form') }}">
     <input class="button" type="submit" value="Add new"/>
   </form>

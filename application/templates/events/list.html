@@ -2,13 +2,18 @@
 
 {% block body %}
   <h1>Events</h1>
+  {% if not events[0] %}
+    <h3>Looks like there aren't any events.</h3>
+  {% endif %}
   <div class="rTable">
     <div class="rTableBody">
-      <div class="rTableRow label">
-        <div class="rTableHead">{{ form.category_id.label }}</div>
-        <div class="rTableHead">{{ form.duration.label }}</div>
-        <div class="rTableHead">{{ form.description.label }}</div>
-      </div>
+      {% if not events[0] %}
+        <div class="rTableRow label">
+          <div class="rTableHead">{{ form.category_id.label }}</div>
+          <div class="rTableHead">{{ form.duration.label }}</div>
+          <div class="rTableHead">{{ form.description.label }}</div>
+        </div>
+      {% endif %}
       {% for event in events %}
       <div class="rTableRow">
         <div class="rTableCell item">{{ category.query.filter_by(id=event.category_id).first().name }}</div>
@@ -67,6 +72,10 @@
 
     </div>
   {% endfor %}
+
+  <form action="{{ url_for('events_form') }}">
+    <input class="button" type="submit" value="Add new"/>
+  </form>
 
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/edit.js') }}"></script>
 {% endblock %}
