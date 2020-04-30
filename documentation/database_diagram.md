@@ -1,6 +1,9 @@
 # Tietokanta
 ### Tietokantakaavio
-**Categories** eli kategoriat, **Events** eli tapahtumat, **Clips** eli muistiinpanot tai tekstiklipit ja **Users** eli käyttäjät. **Primary keyt** ovat lihavoitu ja **foreign keyt** ovat merkitty _id liitteellä. 
+**Category** eli kategoriat, **Event** eli tapahtumat, **Clip** eli tekstiklipit,  ja **User** eli käyttäjät. 
+**Clip_Categories** on Category ja Clip -taulujen välinen aputaulu monesta moneen -suhteeseen.
+
+**Primary keyt** ovat lihavoitu ja **foreign keyt** ovat merkitty _id liitteellä. 
 
 ![tietokantakaavio](database_diagram.png)
 
@@ -38,10 +41,15 @@ CREATE TABLE Event (
 
 CREATE TABLE Clip (
     id INTEGER PRIMARY KEY, 
-    category_id INTEGER NOT NULL, 
     date_created TIMESTAMP NOT NULL, 
     date_modified TIMESTAMP NOT NULL, 
     content VARCHAR(4096) NOT NULL, 
-    FOREIGN KEY(category_id) REFERENCES Category(id)
+);
+
+CREATE TABLE Clip_Categories (
+    category_id INTEGER, 
+    clip_id INTEGER, 
+    FOREIGN KEY(category_id) REFERENCES Category(id),
+    FOREIGN KEY(clip_id) REFERENCES Clip(id)
 );
 ```

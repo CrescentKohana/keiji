@@ -29,8 +29,12 @@ Table Event as E {
 
 Table Clip as Cl {
   id int [pk]
-  category_id int [ref: > Ca.id, not null]
   date_created timestamp [not null]
   date_modified timestamp [not null]
   content varchar
+}
+
+Table Clip_Categories as Cc {
+  category_id int [ref: > Ca.id]
+  clip_id int [ref: > Cl.id]
 }
