@@ -25,9 +25,12 @@ def events_form():
     return render_template("events/new.html", form=EventForm())
 
 
-@app.route("/events/<event_id>/edit", methods=["POST"])
+@app.route("/events/<event_id>/edit", methods=["POST", "GET"])
 @login_required
 def events_edit(event_id):
+    if request.method == "GET":
+        events_index()
+
     if Event.get_event_owner(event_id) == current_user.id:
         form = EventForm(request.form)
 
@@ -50,9 +53,12 @@ def events_edit(event_id):
     return redirect(url_for("events_index"))
 
 
-@app.route("/events/<event_id>/delete", methods=["POST"])
+@app.route("/events/<event_id>/delete", methods=["POST", "GET"])
 @login_required
 def events_delete(event_id):
+    if request.method == "GET":
+        events_index()
+
     if Event.get_event_owner(event_id) == current_user.id:
         c = Event.query.get(event_id)
 

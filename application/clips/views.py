@@ -27,9 +27,12 @@ def clips_form():
     return render_template("clips/new.html", form=ClipForm())
 
 
-@app.route("/clips/<clip_id>/edit", methods=["POST"])
+@app.route("/clips/<clip_id>/edit", methods=["POST", "GET"])
 @login_required
 def clips_edit(clip_id):
+    if request.method == "GET":
+        clips_index()
+
     if Clip.get_clip_owner(clip_id) == current_user.id:
         form = ClipForm(request.form)
 
@@ -55,9 +58,12 @@ def clips_edit(clip_id):
     return redirect(url_for("clips_index"))
 
 
-@app.route("/clips/<clip_id>/delete", methods=["POST"])
+@app.route("/clips/<clip_id>/delete", methods=["POST", "GET"])
 @login_required
 def clips_delete(clip_id):
+    if request.method == "GET":
+        clips_index()
+
     if Clip.get_clip_owner(clip_id) == current_user.id:
         c = Clip.query.get(clip_id)
 
