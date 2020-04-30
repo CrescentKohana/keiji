@@ -11,9 +11,9 @@ Sovellukseen kirjaudutaan sisään klikkaamalla yläoikealta Login. Uloskirjautu
 Käyttäjän tietoja (lempinimi, salasana, kieliasetus) voi vaihtaa kirjautumisen jälkeen klikkaamalla omaa nimeä.
 
 ## Kategorioiden, tapahtumien ja klippien luominen
-Uusia kategorioita, tapahtumia ja klippejä voi luoda Categories, Events ja Clips -linkkien alta löytyvistä Add-linkeistä.
+Uusia kategorioita, tapahtumia ja klippejä voi luoda Categories, Events ja Clips -linkkien alta löytyvistä Add-linkeistä. Klipeille voi asettaa useampia kategorioita valitsemalla listasta useamman kuin yhden.
 
-**Muista luoda ensin omia kategorioita, että voit lisätä mitään tapahtumia tai klippejä!**
+**Huom!** Muista luoda ensin kategorioita, että voit lisätä tapahtumia tai klippejä! Samalla tavalla myös poistaminen: et voi poistaa kategorioita ennen kuin sen kaikki alla olevat klipit ja tapahtumat on poistettu!
 
 ## Tilastot
 Tilastoja voi tarkastella Stats-linkin kautta löytyvältä sivulta.

@@ -1,6 +1,6 @@
 # Käyttötapaukset
 ## Mitä sillä voi tehdä?
-Luoda oman tunnuksen (lempinimi, käyttäjänimi, salasana, kielivalinta): 
+Luoda oman tunnuksen (lempinimi, käyttäjänimi, salasana, kielivalinta), yhdestä moneen -suhteessa: 
 ```
 INSERT INTO User 
     (nickname,username,password,language) 
@@ -12,17 +12,25 @@ INSERT INTO Category
     (user_id,date_created,date_modified,name,description) 
     VALUES (1, TIMESTAMP, TIMESTAMP, "Light novels", "Also called ラノベ (ranobe) in Japan");
 ```
-Kirjata tapahtumia ajan kanssa: 
+Kirjata tapahtumia ajan kanssa, monesta yhteen -suhteessa: 
 ```
 INSERT INTO Event 
     (category_id,date_created,date_modified,description,duration) 
     VALUES (1, TIMESTAMP, TIMESTAMP, "月光 (Gekkou)", 60);
 ```
-Luoda muistiinpanoja / klippejä: 
+Luoda tekstiklippejä, monesta moneen -suhteessa: 
 ```
 INSERT INTO Clip 
-    (category_id,date_created,date_modified,content) 
-    VALUES (1, TIMESTAMP, TIMESTAMP, "eg. citate from a book");
+    (date_created,date_modified,content) 
+    VALUES (TIMESTAMP, TIMESTAMP, "eg. citate from a book");
+
+INSERT INTO Clip_Categories 
+    (category_id,clip_id) 
+    VALUES (1, 1);
+
+INSERT INTO Clip_Categories 
+    (category_id,clip_id) 
+    VALUES (2, 1);
 ```
 Muokata kaikkea tallennettua dataa, jonka on itse luonut: 
 ```
@@ -53,3 +61,4 @@ Käyttäjä voi haluta myös ottaa talteen hyviä otteita kuluttamastaan viihtee
 ## Tulevaisuudessa
 * Käännökset kieliominaisuudelle
 * Integraatio palveluihin (esm. YouTube, Spotify) automaattiselle ajanseurannalle
+* Lisää tilastoja stats-sivulle

@@ -53,7 +53,7 @@ def categories_edit(category_id):
 @login_required
 def categories_delete(category_id):
     if Category.query.filter_by(id=category_id).first().account_id == current_user.id:
-        if not Event.query.filter_by(category_id=category_id) or not Clip.query.filter_by(category_id=category_id):
+        if not Event.query.filter_by(category_id=category_id) or not Category.query.join(Clip.categories).filter(Category.id == category_id).all():
             c = Category.query.get(category_id)
 
             db.session.delete(c)

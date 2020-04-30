@@ -10,7 +10,11 @@ class User(Base):
     password = db.Column(db.String(256), nullable=False)
     language = db.Column(db.String(2),   nullable=False)
 
-    categories = db.relationship("Category", backref='account', lazy=True)
+    categories = db.relationship(
+        "Category",
+        backref='account',
+        lazy=True
+    )
 
     def __init__(self, nickname, username, password, language):
         self.nickname = nickname

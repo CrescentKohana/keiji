@@ -10,7 +10,7 @@
       </div>
       {% for clip in clips %}
       <div class="rTableRow">
-        <div class="rTableCell item">{{ category.query.filter_by(id=clip.category_id).first().name }}</div>
+        <div class="rTableCell item">{{ clip_categories[clip.id] }}</div>
         <div class="rTableCell item">{{ clip.content }}</div>
       <div class="rTableCell">
         <button style="width: 110px;" id="edit-button-{{ clip.id }}" class="edit button" onclick="show_edit({{ clip.id }}, `{{ url_for('clips_index')}}`)">
