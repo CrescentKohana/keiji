@@ -2,12 +2,12 @@
 
 {% block body %}
   <h1>Categories</h1>
-  {% if not categories.first %}
-    <h3>Looks like there aren't any categories. Click <a href="{{ url_for('categories_form') }}">here</a> to create some!</h3>
+  {% if not categories[0] %}
+    <h3>Looks like there aren't any categories.</h3>
   {% endif %}
     <div class="rTable">
     <div class="rTableBody">
-    {% if categories.first %}
+    {% if categories[0] %}
       <div class="rTableRow label">
         <div class="rTableHead">{{ form.name.label }}</div>
         <div class="rTableHead">{{ form.description.label }}</div>
@@ -62,6 +62,9 @@
 
     </div>
   {% endfor %}
+  <form action="{{ url_for('categories_form') }}">
+    <input class="button" type="submit" value="Add new"/>
+  </form>
 
   <script type="text/javascript" src="{{ url_for('static', filename = 'js/edit.js') }}"></script>
 {% endblock %}
