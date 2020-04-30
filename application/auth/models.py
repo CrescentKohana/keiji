@@ -21,7 +21,7 @@ class User(Base):
     def __init__(self, nickname, username, password, language):
         self.nickname = nickname
         self.username = username
-        self.password = generate_password_hash(password)
+        self.generate_password_hash(password)
         self.language = language
 
     def get_id(self):
@@ -35,6 +35,9 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def encrypt_password(self, plain_password):
+        self.password = generate_password_hash(plain_password)
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

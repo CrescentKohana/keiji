@@ -77,7 +77,7 @@ def user_edit():
         )
 
     c.nickname = form.nickname.data
-    c.password = form.password.data
+    User.encrypt_password(c, form.password.data)
     c.language = form.language.data
 
     db.session().commit()
