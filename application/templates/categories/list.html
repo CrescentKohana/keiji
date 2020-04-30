@@ -2,12 +2,17 @@
 
 {% block body %}
   <h1>Categories</h1>
+  {% if not categories.first %}
+    <h3>Looks like there aren't any categories. Click <a href="{{ url_for('categories_form') }}">here</a> to create some!</h3>
+  {% endif %}
     <div class="rTable">
     <div class="rTableBody">
+    {% if categories.first %}
       <div class="rTableRow label">
         <div class="rTableHead">{{ form.name.label }}</div>
         <div class="rTableHead">{{ form.description.label }}</div>
       </div>
+    {% endif %}
       {% for category in categories %}
       <div class="rTableRow">
         <div class="rTableCell item">{{ category.name }}</div>
