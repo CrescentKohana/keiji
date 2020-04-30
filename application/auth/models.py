@@ -21,7 +21,7 @@ class User(Base):
     def __init__(self, nickname, username, password, language):
         self.nickname = nickname
         self.username = username
-        self.generate_password_hash(password)
+        self.encrypt_password(password)
         self.language = language
 
     def get_id(self):
