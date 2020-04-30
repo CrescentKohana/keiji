@@ -177,6 +177,7 @@ table {
 }
 
 textarea {
-  width: 250%;
-  height: 100px;
+  resize: none;
+  width: 50%;
+  height: 150px;
 }
