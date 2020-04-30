@@ -39,7 +39,8 @@ def auth_register():
         return render_template("auth/registerform.html", form=form)
 
     if User.query.filter(User.username == form.username.data):
-        return render_template("auth/registerform.html", form=form, error="This username already exists")
+        form.username.errors.append("This username already exists.")
+        return render_template("auth/registerform.html", form=form)
 
     u = User(form.nickname.data, form.username.data, form.password.data, form.language.data)
 
