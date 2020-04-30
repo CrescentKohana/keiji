@@ -41,7 +41,7 @@ class Clip(Base):
         db.relationship("C")
         query = text("SELECT C.account_id "
                      "FROM Category as C "
-                     "WHERE C.id = (SELECT CC.category_id FROM clip_categories CC WHERE CC.clip_id = :clid) "
+                     "WHERE C.id = (SELECT CC.category_id FROM clip_categories CC WHERE CC.clip_id = :clid LIMIT 1) "
                      "GROUP BY C.account_id ",
                      clip_id).params(clid=clip_id)
 
