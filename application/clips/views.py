@@ -17,7 +17,6 @@ def clips_index():
         "clips/list.html",
         clips=trimmed_clips,
         clip_categories=clip_categories,
-        category=Category.query.filter(Category.id == Clip.categories).first(),
         form=ClipForm()
     )
 
@@ -43,7 +42,7 @@ def clips_edit(clip_id):
                 "clips/list.html",
                 clips=trimmed_clips,
                 clip_categories=clip_categories,
-                category=Category.query.filter(Category.id == Clip.categories).first(),
+                category=Category.query.filter(Clip.categories).first(),
                 form=form
             )
 
@@ -84,18 +83,21 @@ def clips_create():
     return redirect(url_for("clips_index"))
 
 
+# Transforms all categories with same clip to one string (eg. "cat1, cat2, cat3"),
+# and saves those strings into a dict clip_categories. Clip.id works as a key.
+#
+# Also trims away all duplicated clips, as categories with same clip are shown in one row.
+# Returns them as trimmec_clips.
 def transform_clips(clips):
     clip_categories = {}
 
-    # Transforms all categories with same clip to one string like this: "cat1, cat2, cat3"
     for clip in clips:
-        for cat in Category.query.filter(Category.id == Clip.categories).first().query.filter_by(id=clip.category_id):
+        for cat in Category.query.filter(Clip.categories).first().query.filter_by(id=clip.category_id):
             if clip.id in clip_categories:
                 clip_categories[clip.id] = clip_categories[clip.id] + "; " + cat.name
             else:
                 clip_categories[clip.id] = cat.name
 
-    # Trims all duplicated clips as categories with same clip are shown in one row.
     seen = set()
     trimmed_clips = []
     for clip in clips:

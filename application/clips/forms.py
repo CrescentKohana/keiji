@@ -9,6 +9,9 @@ from application.categories import models
 class ClipForm(FlaskForm):
     category_id = QuerySelectMultipleField(
         "Category",
+        [
+            validators.data_required()
+        ],
         get_label="name",
         query_factory=lambda: models.Category.query.filter_by(account_id=current_user.id).all()
     )
