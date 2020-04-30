@@ -6,7 +6,7 @@
     <div>
       <div>
         <div>
-          <div>{{ form.category_id.label }} <br> {{ form.category_id }}</div>
+          <div id="category-multi-select">{{ form.category_id.label }} <br> {{ form.category_id }}</div>
           {% for error in form.category_id.errors %}
             <div>{{ error }}</div>
           {% endfor %}

@@ -181,3 +181,15 @@ textarea {
   width: 50%;
   height: 150px;
 }
+
+#category-multi-select {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 33%;
+ }
+
+#dropdown select, #dropdown select option, #dropdown option {
+  max-width: 150px;
+  min-width: 150px;
+  width: 150px;
+}
